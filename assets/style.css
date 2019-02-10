@@ -1,0 +1,76 @@
+.display-4{
+    font-family:'Alfa Slab One';
+    font-size: 60px;
+    margin-bottom: 5px;
+}
+.col-lg-4{
+    font-family:'Alfa Slab One';
+    padding:5px;   
+}
+h3 {
+    font-family:'Alfa Slab One';
+    text-align: center;
+    border-top: 10px solid darkred;
+    margin-top: 5px;
+    padding-top: 5px;
+    margin-bottom: -5px;
+
+}
+.col-lg-12{
+    padding:5px;
+}
+.col-lg-9{
+    padding:5px;
+}
+.col-lg-3{
+    padding:5px;
+}
+.btn-warning{
+padding:8px;
+font-size: 24px;
+color: darkred;
+}
+.btn-dark{
+    background-color: darkred;
+}
+body{
+background:white;
+}
+.jumbotron{
+    background-color: white;
+    text-align: center;
+    margin-bottom: -40px;
+    padding-top: 10px;
+}
+
+}
+#id{
+    padding:10px;
+}
+h1 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 50px;
+}
+.lead {
+    text-align: center;
+
+}
+
+.card-text {
+    color: grey;
+}
+.lead {
+    font-size: 24px;
+}
+.card-link {
+    font-family:'Alfa Slab One';
+    color: darkred;
+}
+.card-title {
+    font-weight: 800;
+
+}
+span {
+    color: darkred;
+}

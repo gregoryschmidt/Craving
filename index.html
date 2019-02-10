@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>What are you craving</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="display-4">What are you CRAVING?</h1>
+    <p class="lead">There are many possibilities, the only limit being your palate.</p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-sm-12">
+        <button type="button" class="btn btn-warning btn-block" id="Burgers" value="Burgers">Burgers</button>
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        <button type="button" class="btn btn-warning btn-block" id="Donuts" value="Donuts">Donuts</button>
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        <button type="button" class="btn btn-warning btn-block" id="Ice-Cream" value="Ice-Cream">Ice Cream</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-sm-12">
+        <button type="button" class="btn btn-warning btn-block" id="Pizza" value="Pizza">Pizza</button>
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        <button type="button" class="btn btn-warning btn-block" id="Ramen" value="Ramen">Ramen</button>
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        <button type="button" class="btn btn-warning btn-block" id="Salad" value="Salad">Salad</button>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-sm-12">
+        <button type="button" class="btn btn-warning btn-block" id="Sandwich" value="Sandwich">Sandwich</button>
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        <button type="button" class="btn btn-warning btn-block" id="Sushi" value="Sushi">Sushi</button>
+      </div>
+
+      <div class="col-lg-4 col-sm-12">
+        <button type="button" class="btn btn-warning btn-block" id="Tacos" value="Tacos">Tacos</button>
+
+      </div>
+    </div>
+    <!-- <form class="row">
+      <div class="col-lg-9 col-sm-9">
+
+        <input type="text" class="form-control" id="search" aria-describedby="search" placeholder="Craving something else? Type it here.">
+
+      </div>
+      <div class="col-lg-3 col-sm-3">
+        <button type="submit" class="btn btn-dark btn-block" id="submit">Submit</button>
+      </div>
+    </form> -->
+    <div class="row">
+      <div class="col-lg-12 col-sm-12">
+        <h3>Save money by making it!</h3>
+      </div>
+    </div>
+    <div class="row recipe">
+
+      <!-- <div class="col-lg-3 col-sm-12">
+          <div class="card">
+            <img src=thumbnail class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">title</h5>
+              <p class="card-text">ingredients</p>
+              <a href=link class="card-link">Recipe link</a>
+              <button type="button" class="card-link">Save</button>
+            </div>
+          </div> -->
+      <!-- </div> -->
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <h3>Order takeout or get it delivered!</h3>
+      </div>
+    </div>
+    <div class="row restaurant">
+      <!-- <div class="col-lg-3 col-sm-12"> -->
+      <!-- <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">restaurant.name</h5>
+            <a href= menu class="card-link">Menu Link</a>
+            <p class="card-text">restaurant.location.address</p>
+            
+            <p class="card-text">+price+</p>
+          </div>
+        </div> -->
+      <!-- </div> -->
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <h3>My favorites!</h3>
+      </div>
+    </div>
+    <div id="favorites" class="row">
+
+      <!-- <div class="col-lg-3 col-sm-12"> -->
+      <!-- <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">restaurant.name</h5>
+            <a href= menu class="card-link">Menu Link</a>
+          </div>
+          </div>-->
+
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyDyPeGtIq_UrNhZ4KnH40szYXcxXoqbWt4",
+      authDomain: "project1-59519.firebaseapp.com",
+      databaseURL: "https://project1-59519.firebaseio.com",
+      projectId: "project1-59519",
+      storageBucket: "project1-59519.appspot.com",
+      messagingSenderId: "460583421711"
+    };
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
+
+    $('body').on("click", "#save", function (event) {
+
+      event.preventDefault();
+
+      var dataTitle = $(this).attr("data-title");
+      var dataLink = $(this).attr("data-link");
+
+      var newFav = {
+        name: dataTitle,
+        link: dataLink,
+      };
+      console.log(newFav);
+      database.ref().push(newFav);
+
+
+
+    });
+    database.ref().on('child_added', function (snapshot) {
+      var sv = snapshot.val();
+      $("#favorites").append(
+        '<div class="col-lg-3 col-sm-12"> <div class="card"> <div class="card-body"> <h5 class="card-title">' +
+        sv.name + '</h5> <a href= ' + sv.link + ' class="card-link">More Info</a> </div> </div>');
+
+    })
+
+
+
+
+
+    $(".btn-warning").on("click", function () {
+      var food = $(this).attr("value");
+      var queryUrl = "https://developers.zomato.com/api/v2.1/search?entity_id=302&entity_type=city&q=" + food +
+        "&radius=10000&apikey=71e2ef93157daf461cd4f5d0766dff1a";
+
+      $.ajax({
+          url: queryUrl,
+          method: 'GET'
+
+        })
+        .then(
+          function (response) {
+            $('.restaurant').empty();
+            for (i = 0; i < 4; i++) {
+              console.log('Restaurant:', response.restaurants[i].restaurant.name, 'address:', response.restaurants[
+                  i].restaurant.location.address, 'price:', response.restaurants[i].restaurant.average_cost_for_two,
+                'menu:', response.restaurants[i].restaurant.menu_url);
+              var name = response.restaurants[i].restaurant.name;
+              var address = response.restaurants[i].restaurant.location.address;
+              var price = response.restaurants[i].restaurant.average_cost_for_two;
+              var link = response.restaurants[i].restaurant.menu_url;
+
+              $('.restaurant').append(
+                '<div class= col-lg-3 col-sm-12"> <div class="card"> <div class="card-body"><h5 class="card-title">' +
+                name + '</h5> <p class="card-text">' + address + '</p> <p class="card-text">' +
+                "Average price for two: $" + price + '</p> <a href= ' + link +
+                ' class="card-link">More Info</a> <button type="button" id="save" class="card-link save" data-title="' +
+                name + '" data-link=' + link + '>Save</button> </div> </div> </div>'
+              )
+            }
+          }
+
+        );
+
+      var corsProxy = "https://cors-anywhere.herokuapp.com/";
+      var endpointUrl = "http://www.recipepuppy.com/api/?q=" + food;
+      var fullUrl = corsProxy + endpointUrl;
+      $('.recipe').empty();
+      $.ajax({
+          url: fullUrl,
+          method: "GET"
+
+
+        })
+        .then(
+          function (response) {
+            var obj = JSON.parse(response);
+            for (i = 0; i < 4; i++) {
+              console.log('success:', obj.results[i].thumbnail, obj.results[i].title, obj.results[i].ingredients,
+                obj.results[i].href);
+              var thumbnail = obj.results[i].thumbnail;
+              var name = obj.results[i].title;
+              var ingredients = obj.results[i].ingredients;
+              var link = obj.results[i].href;
+
+
+
+
+
+              $('.recipe').append(
+                '<div class="col-lg-3 col-md-12"> <div class="card"> <img class="card-img-top" src=' + thumbnail +
+                '> <div class="card-body"><h5 class="card-title">' + name + '</h5> <p class="card-text">' +
+                "Ingredients: " + ingredients + '</p> <a href=' + link +
+                ' class="card-link">Recipe Link</a> <button type="button" id= "save" class="card-link save" data-title="' +
+                name + '" data-link=' + link + '>Save</button> </div> </div> </div>'
+              )
+            }
+          }
+
+
+        );
+
+    });
+
+
+
+    // Initialize Firebase
+    // var config = {
+    //   apiKey: "AIzaSyDyPeGtIq_UrNhZ4KnH40szYXcxXoqbWt4",
+    //   authDomain: "project1-59519.firebaseapp.com",
+    //   databaseURL: "https://project1-59519.firebaseio.com",
+    //   projectId: "project1-59519",
+    //   storageBucket: "project1-59519.appspot.com",
+    //   messagingSenderId: "460583421711"
+    // };
+    // firebase.initializeApp(config);
+
+    // var database = firebase.database();
+
+    // // 2. Button for counting seaches? 
+    // $(".btn").on("click", function () {
+    //   event.preventDefault();
+
+    //   var food = $(this).attr("value");
+  </script>
+  <footer>
+
+  </footer>
+</body>
+
+</html>
