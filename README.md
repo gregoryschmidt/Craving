@@ -1,2 +1,2 @@
-# Craving
-What you CRAVING? Website uses two APIs to help you satisfy your food craving.
+# What are you CRAVING?
+Website uses two APIs to help the user satisfy a food craving.
